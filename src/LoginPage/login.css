@@ -1,0 +1,242 @@
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    transition: all 700ms;
+    min-width: 500px;
+    flex: 1;
+    background-color: #6f8ca7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 8px 8px 0px;
+    -webkit-box-shadow: 3px 23px 60px -28px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 23px 60px -24px rgba(0,0,0,0.75);
+    box-shadow: 3px 23px 60px -24px rgba(0,0,0,0.75);
+}
+
+.card-container {
+    transition: all 500ms;
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.signup  {
+    transition: all 500ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    min-height: 450px;
+    
+    & input {
+        transition: all 500ms;
+        color: black;
+        /* width: 100%; */
+        padding: 16px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    & form {
+        transition: all 500ms;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    & button {
+        transition: all 500ms;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    & .billing {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+
+        & select {
+            width: 100%;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+
+        }
+    }
+}
+
+.login {
+    transition: all 500ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    gap: 12px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    min-height: 400px;
+
+    & input {
+        transition: all 500ms;
+
+        /* width: 100%; */
+        padding: 16px;
+        color: black;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    & form {
+        transition: all 500ms;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    & button {
+        transition: all 500ms;
+
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.mobileSidebar {
+    display: none;
+}
+
+@media screen and (width <= 800px) {
+    .sidebar {
+        display:none;
+    }
+
+    .mobileSidebar {
+        display: block;
+    }
+
+    .login {
+        transition: all 500ms;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        gap: 12px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+
+        width: 300px;
+        min-height: 400px;
+    
+        & input {
+            transition: all 500ms;
+            color: black;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background-color: rgb(243, 238, 238);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        & form {
+            transition: all 500ms;
+    
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    
+        & button {
+            transition: all 500ms;
+            background-color: orange;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .signup  {
+        transition: all 500ms;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        gap: 12px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        min-height: 450px;
+        
+        & input {
+            transition: all 500ms;
+            color: black;
+            /* width: 100%; */
+            padding: 16px;
+            background-color: rgb(243, 238, 238);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        & form {
+            transition: all 500ms;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    
+        & button {
+            transition: all 500ms;
+            background-color: orange;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+        }
+    
+        & .billing {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgb(243, 238, 238);
+            & select {
+                background-color: rgb(243, 238, 238);
+                color: rgb(0, 255, 34);
+                width: 100%;
+                border: none;
+                padding: 12px;
+                border-radius: 8px;
+    
+            }
+        }
+    }
+}
