@@ -50,20 +50,19 @@ const SignInForm = ({ showLoginForm, toggleForm, showMessage }) => {
   return (
     <div className="signup">
       <h2>Signup</h2>
-      <h5 style={{color:"red"}}>Due to the DataBase server error, registration processes may fail or be delayed.</h5>
       <form onSubmit={handleSignUp} >
         <input
           type="email"
           placeholder="E-mail"
           required
-          value={email}
+          // value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="text"
           placeholder="Name"
           required
-          value={signUpData[0]}
+          // value={signUpData[0]}
           onChange={(e) => {
             const newData = [...signUpData];
             newData[0] = e.target.value;
@@ -74,7 +73,7 @@ const SignInForm = ({ showLoginForm, toggleForm, showMessage }) => {
           type="text"
           placeholder="Surname"
           required
-          value={signUpData[1]}
+          // value={signUpData[1]}
           onChange={(e) => {
             const newData = [...signUpData];
             newData[1] = e.target.value;
@@ -85,13 +84,13 @@ const SignInForm = ({ showLoginForm, toggleForm, showMessage }) => {
           type="password"
           placeholder="Password"
           required
-          value={password}
+          // value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="billing">
           <h5>Billing</h5>
           <select
-            value={signUpData[2]}
+            // value={signUpData[2]}
             onChange={(e) => {
               const newData = [...signUpData];
               newData[2] = e.target.value;

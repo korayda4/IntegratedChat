@@ -1,7 +1,7 @@
-const typeText = (text,{setCanType,setTypingText}) => {
-
+const typeText = (text,{setCanType,setTypingText,className}) => {
+    
+    
     let index = -1;
-    setTypingText(prevText => prevText + text[0]);
     const intervalId = setInterval(() => {
         index++;
         if (index !== 0) {
@@ -10,8 +10,8 @@ const typeText = (text,{setCanType,setTypingText}) => {
         if (index >= text.length) {
             clearInterval(intervalId);
             setTypingText("");
-            setCanType(true);
-        }
+            className == "ai" ? setCanType(true):setCanType(false)
+        }   
     }, 15);
 
 }

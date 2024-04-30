@@ -1,54 +1,78 @@
-const formatMessage = ( message ) => {
-    const lines = message.split('\n');
-    const formattedLines = [];
+import React from 'react';
+import { Copy } from 'lucide-react';
 
-    let inCodeBlock = false;
-    let codeBlock = [];
+const formatMessage = (message) => {
+  const lines = message.split('\n');
+  const formattedLines = [];
 
-    const specialKeywords = ["import", "function", "trim"];
+  let inCodeBlock = false;
+  let codeBlock = [];
 
-    for (let line of lines) {
-        if (line.trim().startsWith('```') || line.trim().startsWith('#')) {
-            if (inCodeBlock) {
-                formattedLines.push(
-                    <div key={formattedLines.length} className="code-line">
-                        <div className="codeName">code</div>
-                        {codeBlock.map((codeLine, index) => (
-                            <div key={index}>{codeLine}</div>
-                        ))}
-                    </div>
-                );
-                inCodeBlock = false;
-                codeBlock = [];
-            } else {
-                inCodeBlock = true;
-            }
-        } else {
-            let spaceAddedLine = line.split('').map(char => char === ' ' ? '\u00a0' : char).join('');
-            if (inCodeBlock) {
-                codeBlock.push(spaceAddedLine);
-            } else {
-                specialKeywords.forEach(keyword => {
-                    const regex = new RegExp(`\\b${keyword}\\b`, 'g');
-                    spaceAddedLine = spaceAddedLine.replace(regex, `<span class="special-keyword">${keyword}</span>`);
-                });
-                formattedLines.push(<div key={formattedLines.length} dangerouslySetInnerHTML={{ __html: spaceAddedLine }} />);
-            }
-        }
-    }
+  const handleCopy = (text) => {
+    text ? navigator.clipboard.writeText(text.target.parentElement.parentElement.parentElement.children[1].innerText) : null;
+  };
 
-    if (inCodeBlock) {
+  for (let line of lines) {
+    const trimmedLine = line.trim();
+
+    if (trimmedLine.startsWith('```')) {
+      if (inCodeBlock) {
         formattedLines.push(
-            <div key={formattedLines.length} className="code-line">
-                <div className="codeName">code</div>
-                {codeBlock.map((codeLine, index) => (
-                    <div key={index}>{codeLine}</div>
-                ))}
+          <div key={formattedLines.length} className="code-block">
+            <div className="code-header">
+              code 
+              <div className="copy" style={{ cursor: "pointer" }} onClick={(e) => handleCopy(e)}>
+                <Copy size={16} />
+              </div>
             </div>
+            <div className="code-content">
+              {codeBlock}
+            </div>
+          </div>
         );
+        inCodeBlock = false;
+        codeBlock = [];
+      } else {
+        inCodeBlock = true;
+      }
+    } else {
+      if (inCodeBlock) {
+        const currentIndentation = line.match(/^\s*/)[0];
+        codeBlock.push(
+          <pre key={codeBlock.length} style={{ marginLeft: currentIndentation }}>
+            {line}
+          </pre>
+        );
+      } else {
+        formattedLines.push(
+          <div
+            key={formattedLines.length}
+            className={trimmedLine.startsWith('#') ? "header-line" : "regular-line"}
+          >
+            {trimmedLine}
+          </div>
+        );
+      }
     }
+  }
 
-    return formattedLines;
-}
+  if (inCodeBlock && codeBlock.length > 0) {
+    formattedLines.push(
+      <div key={formattedLines.length} className="code-block">
+        <div className="code-header">
+          code
+          <div className="copy" onClick={handleCopy}>
+            <Copy size={16} />
+          </div>
+        </div>
+        <div className="code-content">
+          {codeBlock}
+        </div>
+      </div>
+    );
+  }
+
+  return formattedLines;
+};
 
 export default formatMessage;

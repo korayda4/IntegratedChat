@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "./chatInput";
 import MeetVeriable from "./meet"
 import fetchAI from "./fetchAI";
-import updateChatHistory from "./updateChatHistory";
 
 const Message = () => {
-    const [typingText, setTypingText] = useState("");
     const [meet, setMeet] = useState([]);
     const [canType, setCanType] = useState(true);
     const contentRef = useRef(null);
@@ -14,15 +12,11 @@ const Message = () => {
         if (contentRef.current) {
             contentRef.current.scrollTop = contentRef.current.scrollHeight;
         }
-    }, [meet,typingText]);
+    }, [meet]);
 
     const handleSubmit = async (text,setInputValue) => {
-        setCanType(false);
         setInputValue("")
-        // document.activeElement.blur();
-        console.log(meet);
-        await fetchAI(text, { setMeet,setTypingText,setCanType,meet});
-        // updateChatHistory(meet)
+        await fetchAI(text, {setCanType,setMeet,meet});
             
     };
 
@@ -31,8 +25,8 @@ const Message = () => {
             <div ref={contentRef} className="message">
                 <MeetVeriable
                     meet={meet}
-                    typingText={typingText}
                     setCanType={setCanType}
+                    canType={canType}
                 />
             </div>
             
@@ -40,6 +34,7 @@ const Message = () => {
                 <ChatInput
                     meet={meet}
                     setMeet={setMeet}
+                    setCanType={setCanType}
                     canType={canType}
                     handleSubmit={handleSubmit}
                 />

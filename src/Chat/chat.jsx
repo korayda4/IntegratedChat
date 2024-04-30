@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import {  message } from 'antd';
-import { AlignJustify } from 'lucide-react';
+import { AlignJustify,SquarePen } from 'lucide-react';
 import useStore from '../zustand/state';
 import LoginPage from "../LoginPage/loginPage";
 import Message from "./message";
@@ -19,7 +19,7 @@ const Chat = () => {
 
     useEffect(() => {
         IsLogin()
-      }, [useStore]);
+    },[]);
       
 
     return (
@@ -33,7 +33,9 @@ const Chat = () => {
                         </div>
                         <div className="version">
                             <h2>IntegratedChat</h2>
-                            <h5>1.0.0.4</h5>
+                        </div>
+                        <div onClick={() => {useStore.setState({ mobileSidebar:!mobileSidebar });}} className="menuIcon">
+                            <SquarePen style={{height:"20px"}}/>
                         </div>
                     </div>
                     <Message />

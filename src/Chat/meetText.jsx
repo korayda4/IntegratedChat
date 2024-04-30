@@ -1,11 +1,21 @@
 import  formatMessage  from './formatMessage'; // formatMessage fonksiyonunu import edin
+import typeText from './typeText';
+import { useEffect, useState } from 'react';
 
-const messageCreator = ({isLastIndex,typingText,x}) => {
+const messageCreator = ({className,x,setCanType,meet,canType}) => {
+    const [typingText, setTypingText] = useState("");
+
+    useEffect(() => {
+        if(className == "ai"){
+            setTypingText(prevText => prevText + x[0]);
+            typeText(x , { setCanType, setTypingText ,className})
+        } 
+    },[x,className])
 
     return(
         <>
-            <h4 className="msg" style={{ display: typingText ? "block" : "none" }}>{isLastIndex ? typingText : formatMessage(x)} </h4>
-            <h4 className="msg" style={{ display: typingText ? "none" : "block" }}>{formatMessage(x)}</h4>
+            {!canType ? <h4 className="msg" >{className == "ai" ? typingText : formatMessage(x)} </h4>:
+            <h4 className="msg" >{!typingText ? formatMessage(x):null}</h4>}
         </>
     )
 }

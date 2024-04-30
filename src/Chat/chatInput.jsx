@@ -1,16 +1,19 @@
-import { Input  } from 'antd';
+import { Input,Button  } from 'antd';
 import { useState } from 'react';
 const { Search } = Input;
 
-function ChatForm ({ handleSubmit, canType, setMeet, meet }) {
+function ChatForm ({ handleSubmit,canType,setMeet,setCanType}) {
     const [inputValue, setInputValue] = useState("");
 
     const onSearchLocal =  async (value) => {
-        await setMeet(prevMeet => [...prevMeet, value])
-        await handleSubmit(value,setInputValue)
+        if(value) {  
+            await setMeet(prevMeet => [...prevMeet, value])
+            await handleSubmit(value,setInputValue)
+        }
     }
 
     const handleChange = (event) => {
+        
         setInputValue(event.target.value);
     };
 

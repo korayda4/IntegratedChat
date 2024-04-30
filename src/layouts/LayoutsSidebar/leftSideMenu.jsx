@@ -5,7 +5,6 @@ import {SquarePen,Frown  } from "lucide-react"
 
 const LeftSideMenu = () => {
     const {dataMeet} = useStore()
-
     return (
         <div className="chatHistory">
             <div className="newChat">
@@ -18,7 +17,7 @@ const LeftSideMenu = () => {
                 </Button>
             </div>
             <div style={{justifyContent:dataMeet ? "start":null}} className="history">
-                {dataMeet ? "null":<Frown  />}
+                {dataMeet ? "HİSTORY SUCCESSFULY LOADED":<Frown  />}
             </div>
         </div>
     )

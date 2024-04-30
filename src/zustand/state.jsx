@@ -5,7 +5,6 @@ const useStore = create((set) => ({
   userData: null,
   mobileSidebar:false,
   dataMeet:null,
-  localMeet:null
 }));
 
 export default useStore;

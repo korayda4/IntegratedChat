@@ -6,7 +6,7 @@ const isLogin = () => {
     const unsubscribe = supabase.auth.onAuthStateChange(async (event, session) => {
         if (event === 'SIGNED_IN') {
           useStore.setState({ isLogin: true, userData: session.user });
-        //   getChatHistory(session)
+          getChatHistory()
         } else if (event === 'SIGNED_OUT') {
           useStore.setState({ isLogin: false, userData: null , });
         }

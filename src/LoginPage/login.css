@@ -93,6 +93,7 @@ form {
 }
 
 .login {
+    background-size:cover ;
     transition: all 500ms;
     display: flex;
     flex-direction: column;

@@ -3,10 +3,14 @@ import { Button, Dropdown, FloatButton } from 'antd';
 import userLogo from "../img/icons8-male-user-100.png"
 import aiLogo from "../img/icons8-ai-100.png"
 import MeetText from "./meetText";
-import { supabase } from "../supaBase/supabaseClient";
+import updateChatHistory from "./updateChatHistory";
 
-const MeetVeriable = ({ meet, typingText }) => {
+const MeetVeriable = ({canType, meet,setCanType }) => {
     const currentDate = new Date()
+
+    useEffect(() => {
+        updateChatHistory(meet)
+    },[meet])
 
 
     return (
@@ -25,7 +29,7 @@ const MeetVeriable = ({ meet, typingText }) => {
                 const className = i % 2 === 0 ? "me" : "ai";
                 const isLastIndex = i === meet.length - 1;
                 return (
-                    <div key={i} className={className}>
+                    <div id={i} key={i} className={className}>
                         {className === "me" ? (
                             <Dropdown
                                 menu={{
@@ -55,8 +59,10 @@ const MeetVeriable = ({ meet, typingText }) => {
                         )}
 
                         <MeetText 
-                            typingText={typingText}
-                            isLastIndex={isLastIndex}
+                            canType={canType}
+                            meet={meet}
+                            setCanType={setCanType}
+                            className={className}
                             x={x}
                         />
                     </div>
